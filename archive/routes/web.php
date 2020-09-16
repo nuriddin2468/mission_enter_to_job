@@ -15,12 +15,17 @@ use App\Http\Controllers\LockerController;
 */
 
 Route::get('/', [MainController::class, 'home'])->name('home');
+Route::resource('lockers', LockerController::class);
+Route::resource('cells', \App\Http\Controllers\CellController::class);
+Route::resource('folders', \App\Http\Controllers\FolderController::class);
+Route::resource('folders.files', \App\Http\Controllers\FileController::class)->shallow();
 
-// Lockers
-Route::get('lockers/', [LockerController::class, 'index'])->name('lockers');
-Route::get('lockers/create', [LockerController::class, 'create_form'])->name('lockersCreate');
-Route::post('lockers/create', [LockerController::class, 'create_req'])->name('lockersCreateReq');
+Route::get('api/cells/{id}', [\App\Http\Controllers\CellController::class, 'cellsByLocker']); // For ajax
 
-Route::get('cells/', [LockerController::class, 'index'])->name('cells');
-Route::get('folders/', [LockerController::class, 'index'])->name('folders');
-Route::get('files/', [LockerController::class, 'index'])->name('files');
+
+// Search
+
+Route::post('lockers/search', [LockerController::class, 'search'])->name('lockers.search');
+Route::post('cells/search', [\App\Http\Controllers\CellController::class, 'search'])->name('cells.search');
+Route::post('folders/files/search', [\App\Http\Controllers\FileController::class, 'search'])->name('folders.files.search');
+Route::post('folders/search', [\App\Http\Controllers\FolderController::class, 'search'])->name('folders.search');

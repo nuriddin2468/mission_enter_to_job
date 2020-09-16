@@ -16,6 +16,10 @@ class CreateFolderModelsTable extends Migration
         Schema::create('folder_models', function (Blueprint $table) {
             $table->id();
             $table->string('title', 122);
+            $table->unsignedBigInteger('cell_id');
+            $table->foreign('cell_id')
+                ->references('id')->on('cell_models')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,10 +10,10 @@ class CellModel extends Model
     use HasFactory;
 
     public function locker(){
-        return $this->belongsTo('App\Models\LockerModel');
+        return $this->belongsTo(LockerModel::class, 'locker_id');
     }
 
     public function folders(){
-        return $this->hasMany('App\Models\FolderModel');
+        return $this->hasMany(FolderModel::class, 'cell_id');
     }
 }

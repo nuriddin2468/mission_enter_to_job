@@ -8,7 +8,7 @@
             @endforeach
         @endif
 
-        <form class="mt-4" method="post" action="{{ route('lockersCreateReq') }}">
+        <form class="mt-4" method="post" action="{{ route('lockers.store') }}">
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Название шкафа</label>

@@ -18,6 +18,10 @@ class CreateFileModelsTable extends Migration
             $table->string('title', 122);
             $table->text('description');
             $table->string('path', 244);
+            $table->unsignedBigInteger('folder_id');
+            $table->foreign('folder_id')
+                ->references('id')->on('folder_models')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

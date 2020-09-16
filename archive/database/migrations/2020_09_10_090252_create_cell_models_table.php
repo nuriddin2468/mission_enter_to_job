@@ -16,6 +16,10 @@ class CreateCellModelsTable extends Migration
         Schema::create('cell_models', function (Blueprint $table) {
             $table->id();
             $table->string('title', 122);
+            $table->unsignedBigInteger('locker_id');
+            $table->foreign('locker_id')
+                ->references('id')->on('locker_models')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

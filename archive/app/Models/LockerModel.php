@@ -10,6 +10,6 @@ class LockerModel extends Model
     use HasFactory;
 
     public function cells(){
-        return $this->hasMany('App\Models\CellModel');
+        return $this->hasMany(CellModel::class, 'locker_id');
     }
 }

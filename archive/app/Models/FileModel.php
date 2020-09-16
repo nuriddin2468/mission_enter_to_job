@@ -10,6 +10,6 @@ class FileModel extends Model
     use HasFactory;
 
     public function folder(){
-        return $this->belongsTo('App\Models\FolderModel');
+        return $this->belongsTo('App\Models\FolderModel', 'folder_id');
     }
 }

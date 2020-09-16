@@ -23,27 +23,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto text-capitalize">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('lockers') }}">шкафы</a>
+                <a class="nav-link" href="{{ route('lockers.index') }}">шкафы</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cells') }}">ячейки</a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('folders') }}">папки</a>
+                <a class="nav-link" href="{{ route('cells.index') }}">ячейки</a>
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('files') }}">файлы</a>
+                <a class="nav-link" href="{{ route('folders.index') }}">папки</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('folders.files.index', 'all') }}">файлы</a>
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+        <form class="form-inline my-2 my-lg-0" method="POST" @section('search') hidden @show>
+            @csrf
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <select name="stype" class="form-control">
+                        <option value="1" class="dropdown-item">Поиск по айди</option>
+                        <option value="2" class="dropdown-item">Поиск по названию</option>
+                    </select>
+                </div>
+                <input name="sval" type="text" class="form-control" aria-label="Text input with dropdown button">
+            </div>
+            <button type="submit" class="btn btn-outline-success">Поиск</button>
         </form>
     </div>
 </nav>
